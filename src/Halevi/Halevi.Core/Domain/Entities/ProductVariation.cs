@@ -4,11 +4,11 @@ namespace Halevi.Core.Domain.Entities
 {
     public class ProductVariation : BaseEntitiy
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        public bool[] Image { get; set; }
+        public bool[]? Image { get; set; }
 
         public Guid ProductId { get; set; }
-        public Product Product { get; set; }
+        public Product Product { get; set; } = null!;
     }
 }
