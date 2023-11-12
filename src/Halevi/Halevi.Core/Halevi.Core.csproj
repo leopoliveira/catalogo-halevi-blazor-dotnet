@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Halevi.Enums\Halevi.Enums.csproj" />
+  </ItemGroup>
+
 </Project>
