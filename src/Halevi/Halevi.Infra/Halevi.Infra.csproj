@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Halevi.Core\Halevi.Core.csproj" />
     <ProjectReference Include="..\Halevi.Enums\Halevi.Enums.csproj" />
   </ItemGroup>
 
