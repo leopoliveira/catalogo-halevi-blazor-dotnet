@@ -1,3 +1,6 @@
+using Halevi.Infra.DbConfig;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace Halevi.API
 {
@@ -8,6 +11,18 @@ namespace Halevi.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            string connString = Environment.GetEnvironmentVariable("ConnectionString");
+
+            if (connString is null)
+            {
+                Environment.SetEnvironmentVariable("ConnectionString", "Data Source=Halevi.db");
+                connString = Environment.GetEnvironmentVariable("ConnectionString");
+            }
+
+            builder.Services.AddDbContext<AppDbContext>(opt =>
+                opt.UseSqlite(connString,x => x.MigrationsAssembly("Halevi.Infra"))
+            );
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
