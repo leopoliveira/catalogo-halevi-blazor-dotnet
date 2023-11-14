@@ -1,4 +1,8 @@
+using Halevi.Core.Domain.Interfaces.Repositories;
+using Halevi.Core.Domain.Interfaces.Repositories.Base;
 using Halevi.Infra.DbConfig;
+using Halevi.Infra.Implementations.Repositories;
+using Halevi.Infra.Implementations.Repositories.Base;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +32,13 @@ namespace Halevi.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // DI Container Configuration
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IProductVariationRepository, ProductVariationRepository>();
+
+            builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
             var app = builder.Build();
 
