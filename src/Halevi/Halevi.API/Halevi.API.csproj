@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Halevi.Infra\Halevi.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
