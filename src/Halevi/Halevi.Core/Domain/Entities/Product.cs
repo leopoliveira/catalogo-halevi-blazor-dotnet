@@ -4,7 +4,6 @@ namespace Halevi.Core.Domain.Entities
 {
     public class Product : BaseEntitiy
     {
-
         public string Name { get; set; } = null!;
 
         public string? Description { get; set; }
