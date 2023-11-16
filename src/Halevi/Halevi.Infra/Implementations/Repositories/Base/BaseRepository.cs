@@ -109,7 +109,6 @@ namespace Halevi.Infra.Implementations.Repositories.Base
         {
             return (pagination.ActualPage - 1) * pagination.PageOffset;
         }
-
         private static int NumberOfItemsToTake(Pagination pagination)
         {
             return pagination.PageOffset;
