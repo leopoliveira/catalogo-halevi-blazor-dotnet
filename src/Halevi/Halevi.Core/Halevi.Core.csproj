@@ -7,7 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Application\Implementations\CategoryService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Halevi.Enums\Halevi.Enums.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Application\Implementations\CategoryService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.8.0" />
   </ItemGroup>
 
 </Project>
