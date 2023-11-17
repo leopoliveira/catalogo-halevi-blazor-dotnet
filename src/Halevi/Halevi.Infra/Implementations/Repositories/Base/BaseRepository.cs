@@ -53,13 +53,13 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .ToListAsync();
         }
 
-        public async Task<bool> Exists(Guid id)
+        public async Task<bool> ExistsAsync(Guid id)
         {
             return await _dbSet
                 .AsNoTracking()
                 .AnyAsync(x => x.Id == id);
         }
-        public async Task<bool> Exists(int code)
+        public async Task<bool> ExistsAsync(int code)
         {
             return await _dbSet
                 .AsNoTracking()

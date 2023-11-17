@@ -12,8 +12,8 @@ namespace Halevi.Core.Domain.Interfaces.Repositories.Base
         Task<IEnumerable<TEntity>> GetByAsync(DateOnly createdDate, Pagination pagination);
         Task<IEnumerable<TEntity>> GetWhereAsync(Expression<Func<TEntity, bool>> filter, Pagination pagination);
 
-        Task<bool> Exists(Guid id);
-        Task<bool> Exists(int code);
+        Task<bool> ExistsAsync(Guid id);
+        Task<bool> ExistsAsync(int code);
 
         Task<int> CountAsync();
         Task<int> CountWhereAsync(Expression<Func<TEntity, bool>> filter);
