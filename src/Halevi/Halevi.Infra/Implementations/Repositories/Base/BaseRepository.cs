@@ -99,10 +99,9 @@ namespace Halevi.Infra.Implementations.Repositories.Base
 
         public async Task DeleteAsync(TEntity entity)
         {
+            entity.Active = false;
 
-            _dbSet.Remove(entity);
-
-            await _dbContext.SaveChangesAsync();
+            await UpdateAsync(entity);
         }
 
         private static int NumberOfItemsToSkip(Pagination pagination)
