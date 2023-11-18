@@ -1,3 +1,6 @@
+using System.Reflection;
+
+using Halevi.API.Helpers.Constants;
 using Halevi.Core.Application.Implementations;
 using Halevi.Core.Application.Interfaces;
 using Halevi.Core.Domain.Interfaces.Repositories;
@@ -7,6 +10,7 @@ using Halevi.Infra.Implementations.Repositories;
 using Halevi.Infra.Implementations.Repositories.Base;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace Halevi.API
 {
@@ -33,7 +37,25 @@ namespace Halevi.API
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
+            // Swagger configuration.
+            builder.Services.AddSwaggerGen(opt =>
+            {
+                opt.SwaggerDoc(ApiConstants.API_V1, new OpenApiInfo
+                {
+                    Version = ApiConstants.API_V1,
+                    Title = "Catálogo Halevi Web API",
+                    Description = "API to work with informations about Catálogo Halevi application",
+                    Contact = new OpenApiContact
+                    {
+                        Name = ApiConstants.AUTHOR,
+                        Url = new Uri(ApiConstants.GITHUB_URL)
+                    }
+                });
+
+                string xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                opt.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
+            });
 
             // DI Container Configuration
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
