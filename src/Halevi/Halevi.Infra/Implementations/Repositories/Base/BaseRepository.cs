@@ -34,24 +34,6 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
         }
-        public async Task<IEnumerable<TEntity>> GetByAsync(DateOnly createdDate, Pagination pagination)
-        {
-            return await _dbSet
-                .Where(x => createdDate.CompareTo(x.CreatedAt) == 0)
-                .AsNoTracking()
-                .Skip(NumberOfItemsToSkip(pagination))
-                .Take(NumberOfItemsToTake(pagination))
-                .ToListAsync();
-        }
-        public async Task<IEnumerable<TEntity>> GetWhereAsync(Expression<Func<TEntity, bool>> filter, Pagination pagination)
-        {
-            return await _dbSet
-                .Where(filter)
-                .AsNoTracking()
-                .Skip(NumberOfItemsToSkip(pagination))
-                .Take(NumberOfItemsToTake(pagination))
-                .ToListAsync();
-        }
 
         public async Task<bool> ExistsAsync(Guid id)
         {
@@ -72,14 +54,6 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .AsNoTracking()
                 .CountAsync();
         }
-        public async Task<int> CountWhereAsync(Expression<Func<TEntity, bool>> filter)
-        {
-            return await _dbSet
-                .Where(filter)
-                .AsNoTracking()
-                .CountAsync();
-        }
-
 
         public async Task<int> CreateAsync(TEntity entity)
         {
@@ -102,15 +76,6 @@ namespace Halevi.Infra.Implementations.Repositories.Base
             entity.Active = false;
 
             await UpdateAsync(entity);
-        }
-
-        private static int NumberOfItemsToSkip(Pagination pagination)
-        {
-            return (pagination.ActualPage - 1) * pagination.PageOffset;
-        }
-        private static int NumberOfItemsToTake(Pagination pagination)
-        {
-            return pagination.PageOffset;
         }
     }
 }
