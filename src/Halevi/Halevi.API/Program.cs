@@ -1,3 +1,5 @@
+using Halevi.Core.Application.Implementations;
+using Halevi.Core.Application.Interfaces;
 using Halevi.Core.Domain.Interfaces.Repositories;
 using Halevi.Core.Domain.Interfaces.Repositories.Base;
 using Halevi.Infra.DbConfig;
@@ -37,6 +39,10 @@ namespace Halevi.API
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IProductVariationRepository, ProductVariationRepository>();
+
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IProductVariationService, ProductVariationService>();
 
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
