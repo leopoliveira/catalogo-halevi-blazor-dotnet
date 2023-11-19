@@ -21,14 +21,14 @@ namespace Halevi.Infra.Implementations.Repositories.Base
         public virtual async Task<TEntity> GetByAsync(Guid id)
         {
             return await _dbSet
-                .Where(x => x.Id == id)
+                .Where(x => x.Id == id && x.Active)
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
         }
         public virtual async Task<TEntity> GetByAsync(int code)
         {
             return await _dbSet
-                .Where(x => x.Code == code)
+                .Where(x => x.Code == code && x.Active)
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
         }
@@ -36,6 +36,7 @@ namespace Halevi.Infra.Implementations.Repositories.Base
         {
             return await _dbSet
                 .AsNoTracking()
+                .Where(x => x.Active)
                 .Skip((pagination.ActualPage - 1) * pagination.PageOffset)
                 .Take(pagination.PageOffset)
                 .ToListAsync();
@@ -45,12 +46,14 @@ namespace Halevi.Infra.Implementations.Repositories.Base
         {
             return await _dbSet
                 .AsNoTracking()
+                .Where(x => x.Active)
                 .AnyAsync(x => x.Id == id);
         }
         public virtual async Task<bool> ExistsAsync(int code)
         {
             return await _dbSet
                 .AsNoTracking()
+                .Where(x => x.Active)
                 .AnyAsync(x => x.Code == code);
         }
 
@@ -58,6 +61,7 @@ namespace Halevi.Infra.Implementations.Repositories.Base
         {
             return await _dbSet
                 .AsNoTracking()
+                .Where(x => x.Active)
                 .CountAsync();
         }
 
