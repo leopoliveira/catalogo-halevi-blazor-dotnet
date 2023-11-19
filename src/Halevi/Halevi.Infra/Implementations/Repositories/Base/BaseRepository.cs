@@ -18,21 +18,21 @@ namespace Halevi.Infra.Implementations.Repositories.Base
             _dbSet = _dbContext.Set<TEntity>();
         }
 
-        public async Task<TEntity> GetByAsync(Guid id)
+        public virtual async Task<TEntity> GetByAsync(Guid id)
         {
             return await _dbSet
                 .Where(x => x.Id == id)
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
         }
-        public async Task<TEntity> GetByAsync(int code)
+        public virtual async Task<TEntity> GetByAsync(int code)
         {
             return await _dbSet
                 .Where(x => x.Code == code)
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
         }
-        public async Task<IEnumerable<TEntity>> GetAllAsync(Pagination pagination)
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Pagination pagination)
         {
             return await _dbSet
                 .AsNoTracking()
@@ -41,27 +41,27 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .ToListAsync();
         }
 
-        public async Task<bool> ExistsAsync(Guid id)
+        public virtual async Task<bool> ExistsAsync(Guid id)
         {
             return await _dbSet
                 .AsNoTracking()
                 .AnyAsync(x => x.Id == id);
         }
-        public async Task<bool> ExistsAsync(int code)
+        public virtual async Task<bool> ExistsAsync(int code)
         {
             return await _dbSet
                 .AsNoTracking()
                 .AnyAsync(x => x.Code == code);
         }
 
-        public async Task<int> CountAsync()
+        public virtual async Task<int> CountAsync()
         {
             return await _dbSet
                 .AsNoTracking()
                 .CountAsync();
         }
 
-        public async Task<int> CreateAsync(TEntity entity)
+        public virtual async Task<int> CreateAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
 
@@ -69,7 +69,7 @@ namespace Halevi.Infra.Implementations.Repositories.Base
 
             return entity.Code;
         }
-        public async Task UpdateAsync(TEntity entity)
+        public virtual async Task UpdateAsync(TEntity entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
             _dbContext.Entry(entity).Property(x => x.Code).IsModified = false;
@@ -77,7 +77,7 @@ namespace Halevi.Infra.Implementations.Repositories.Base
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(TEntity entity)
+        public virtual async Task DeleteAsync(TEntity entity)
         {
             entity.Active = false;
 
