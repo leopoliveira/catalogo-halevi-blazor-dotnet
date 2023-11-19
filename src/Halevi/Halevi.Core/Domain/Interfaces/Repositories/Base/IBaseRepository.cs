@@ -1,4 +1,6 @@
-﻿using Halevi.Core.Domain.Entities.Base;
+﻿using Halevi.Core.Domain.Entities;
+using Halevi.Core.Domain.Entities.Base;
+using Halevi.Core.Domain.Utils;
 
 namespace Halevi.Core.Domain.Interfaces.Repositories.Base
 {
@@ -6,6 +8,7 @@ namespace Halevi.Core.Domain.Interfaces.Repositories.Base
     {
         Task<TEntity> GetByAsync(Guid id);
         Task<TEntity> GetByAsync(int code);
+        Task<IEnumerable<TEntity>> GetAllAsync(Pagination pagination);
 
         Task<bool> ExistsAsync(Guid id);
         Task<bool> ExistsAsync(int code);

@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-using Halevi.Core.Domain.Entities.Base;
+﻿using Halevi.Core.Domain.Entities.Base;
 using Halevi.Core.Domain.Interfaces.Repositories.Base;
 using Halevi.Core.Domain.Utils;
 using Halevi.Infra.DbConfig;
@@ -33,6 +31,14 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .Where(x => x.Code == code)
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
+        }
+        public async Task<IEnumerable<TEntity>> GetAllAsync(Pagination pagination)
+        {
+            return await _dbSet
+                .AsNoTracking()
+                .Skip((pagination.ActualPage - 1) * pagination.PageOffset)
+                .Take(pagination.PageOffset)
+                .ToListAsync();
         }
 
         public async Task<bool> ExistsAsync(Guid id)
