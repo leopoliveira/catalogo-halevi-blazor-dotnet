@@ -5,6 +5,7 @@ using Halevi.Core.Application.Interfaces;
 using Halevi.Core.Application.Mappers;
 using Halevi.Core.Domain.Entities;
 using Halevi.Core.Domain.Interfaces.Repositories;
+using Halevi.Core.Domain.Utils;
 using Halevi.Core.Domain.Validations;
 
 namespace Halevi.Core.Application.Implementations
@@ -56,6 +57,23 @@ namespace Halevi.Core.Application.Implementations
             catch (Exception ex)
             {
                 throw new Exception("Failed on trying to get Category by Code. Please try again later. Error: ", ex.InnerException);
+            }
+        }
+        /// <summary>
+        /// Get all entities.
+        /// </summary>
+        /// <returns>The list of entities converted to Dto.</returns>
+        public async Task<IEnumerable<CategoryDto>> GetAllAsync()
+        {
+            try
+            {
+                IEnumerable<Category> listOfCategories = await _repository.GetAllAsync();
+
+                return listOfCategories.Select(x => x.ToDto());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed on trying to get all categories. Please try again later. Error: ", ex.InnerException);
             }
         }
 

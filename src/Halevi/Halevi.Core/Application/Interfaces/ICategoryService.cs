@@ -2,6 +2,7 @@
 using Halevi.Core.Application.Mappers;
 using Halevi.Core.Domain.Entities;
 using Halevi.Core.Domain.Interfaces.Repositories;
+using Halevi.Core.Domain.Utils;
 
 namespace Halevi.Core.Application.Interfaces
 {
@@ -22,6 +23,11 @@ namespace Halevi.Core.Application.Interfaces
         /// <returns>The entity converted to Dto.</returns>
         /// <exception cref="Exception"></exception>
         public Task<CategoryDto> GetByAsync(int code);
+        /// <summary>
+        /// Get all entities.
+        /// </summary>
+        /// <returns>The list of entities converted to Dto.</returns>
+        public Task<IEnumerable<CategoryDto>> GetAllAsync();
 
         /// <summary>
         /// Verify if exists an entity by the provided Id.
