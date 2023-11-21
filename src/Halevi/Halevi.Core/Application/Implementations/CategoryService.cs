@@ -157,6 +157,11 @@ namespace Halevi.Core.Application.Implementations
         {
             try
             {
+                if (dto.Code is null || dto.Code.Value <= 0)
+                {
+                    dto.Code = _repository.GetLastCode() + 1;
+                }
+
                 Category category = dto.ToEntity();
 
                 _validator.ValidateAndThrow(category);
