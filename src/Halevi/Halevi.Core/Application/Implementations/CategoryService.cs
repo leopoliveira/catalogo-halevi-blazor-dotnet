@@ -25,7 +25,7 @@ namespace Halevi.Core.Application.Implementations
         /// get the entity by the given Id.
         /// </summary>
         /// <param name="id">The entity Id.</param>
-        /// <returns>The entity converted to Dto.</returns>
+        /// <returns>The entity converted to Dto or null.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<CategoryDto> GetByAsync(Guid id)
         {
@@ -50,7 +50,7 @@ namespace Halevi.Core.Application.Implementations
         /// get the entity by the given Code.
         /// </summary>
         /// <param name="code">The entity Code.</param>
-        /// <returns>The entity converted to Dto.</returns>
+        /// <returns>The entity converted to Dto or null.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<CategoryDto> GetByAsync(int code)
         {
@@ -74,7 +74,7 @@ namespace Halevi.Core.Application.Implementations
         /// <summary>
         /// Get all entities.
         /// </summary>
-        /// <returns>The list of entities converted to Dto.</returns>
+        /// <returns>The list of entities converted to Dto or null.</returns>
         public async Task<IEnumerable<CategoryDto>> GetAllAsync()
         {
             try

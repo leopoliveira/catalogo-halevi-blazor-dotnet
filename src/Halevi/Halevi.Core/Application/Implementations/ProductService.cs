@@ -24,7 +24,7 @@ namespace Halevi.Core.Application.Implementations
         /// Get the entity by the given Id.
         /// </summary>
         /// <param name="id">The entity Id.</param>
-        /// <returns>The entity converted to Dto.</returns>
+        /// <returns>The entity converted to Dto or null.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<ProductReadDto> GetByAsync(Guid id)
         {
@@ -49,7 +49,7 @@ namespace Halevi.Core.Application.Implementations
         /// Get the entity by the given Code.
         /// </summary>
         /// <param name="code">The entity Code.</param>
-        /// <returns>The entity converted to Dto.</returns>
+        /// <returns>The entity converted to Dto or null.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<ProductReadDto> GetByAsync(int code)
         {
