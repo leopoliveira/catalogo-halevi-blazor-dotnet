@@ -9,8 +9,20 @@ namespace Halevi.Core.Application.Mappers
         {
             return new ProductVariation()
             {
+                Code = dto.Code.Value,
+                Name = dto.Name,
+                Image = dto.Image,
+                ProductId = dto.ProductId,
+                Active = dto.Active
+            };
+        }
+
+        public static ProductVariation ToEntity(this ProductVariationUpdateDto dto)
+        {
+            return new ProductVariation()
+            {
                 Id = dto.Id,
-                Code = dto.Code,
+                Code = dto.Code.Value,
                 Name = dto.Name,
                 Image = dto.Image,
                 ProductId = dto.ProductId,
@@ -32,9 +44,9 @@ namespace Halevi.Core.Application.Mappers
             };
         }
 
-        public static ProductVariationCreateDto ToCreateDto(this ProductVariation productVariation)
+        public static ProductVariationUpdateDto ToUpdateDto(this ProductVariation productVariation)
         {
-            return new ProductVariationCreateDto()
+            return new ProductVariationUpdateDto()
             {
                 Id = productVariation.Id,
                 Code = productVariation.Code,

@@ -9,13 +9,27 @@ namespace Halevi.Core.Application.Mappers
         {
             return new Product()
             {
-                Code = dto.Code,
+                Code = dto.Code.Value,
                 Name = dto.Name,
                 Description = dto.Description,
                 Price = dto.Price,
                 InStock = dto.InStock,
                 CategoryId = dto.CategoryId,
+                Active = dto.Active
+            };
+        }
+
+        public static Product ToEntity(this ProductUpdateDto dto)
+        {
+            return new Product()
+            {
                 Id = dto.Id,
+                Code = dto.Code.Value,
+                Name = dto.Name,
+                Description = dto.Description,
+                Price = dto.Price,
+                InStock = dto.InStock,
+                CategoryId = dto.CategoryId,
                 Active = dto.Active
             };
         }
@@ -35,9 +49,10 @@ namespace Halevi.Core.Application.Mappers
                 Active = product.Active
             };
         }
-        public static ProductCreateDto ToCreateDto(this Product product)
+
+        public static ProductUpdateDto ToUpdateDto(this Product product)
         {
-            return new ProductCreateDto()
+            return new ProductUpdateDto()
             {
                 Id = product.Id,
                 Code = product.Code,
