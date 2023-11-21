@@ -25,6 +25,7 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
         }
+
         public virtual async Task<TEntity> GetByAsync(int code)
         {
             return await _dbSet
@@ -32,6 +33,7 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
         }
+
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Pagination pagination)
         {
             return await _dbSet
@@ -49,6 +51,7 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .Where(x => x.Active)
                 .AnyAsync(x => x.Id == id);
         }
+
         public virtual async Task<bool> ExistsAsync(int code)
         {
             return await _dbSet
@@ -65,6 +68,11 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .CountAsync();
         }
 
+        public virtual int GetLastCode()
+        {
+            return _dbSet.Max(x => x.Code);
+        }
+
         public virtual async Task<int> CreateAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
@@ -73,6 +81,7 @@ namespace Halevi.Infra.Implementations.Repositories.Base
 
             return entity.Code;
         }
+
         public virtual async Task UpdateAsync(TEntity entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
