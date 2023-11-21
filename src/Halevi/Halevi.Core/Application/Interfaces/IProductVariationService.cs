@@ -12,6 +12,7 @@ namespace Halevi.Core.Application.Interfaces
         /// <exception cref="Exception"></exception>
         /// <exception cref="Exception"></exception>
         public Task<ProductVariationReadDto> GetByAsync(Guid id);
+
         /// <summary>
         /// Get the entity by the given Code.
         /// </summary>
@@ -27,6 +28,7 @@ namespace Halevi.Core.Application.Interfaces
         /// <returns>True if exists; otherwise, false.</returns>
         /// <exception cref="Exception"></exception>
         public Task<bool> ExistsAsync(Guid id);
+
         /// <summary>
         /// Verify if exists an entity by the provided Code.
         /// </summary>
@@ -49,18 +51,19 @@ namespace Halevi.Core.Application.Interfaces
         /// <returns>The created entity code.</returns>
         /// <exception cref="Exception"></exception>
         public Task<int> CreateAsync(ProductVariationCreateDto dto);
+
         /// <summary>
         /// Update the entity by the Dto.
         /// </summary>
         /// <param name="dto">The Dto.</param>
         /// <exception cref="Exception"></exception>
-        public Task UpdateAsync(ProductVariationCreateDto dto);
+        public Task UpdateAsync(ProductVariationUpdateDto dto);
 
         /// <summary>
-        /// Delete the entity by the Dto.
+        /// Delete the entity by the Id.
         /// </summary>
-        /// <param name="dto">The Dto.</param>
+        /// <param name="id">The entity id.</param>
         /// <exception cref="Exception"></exception>
-        public Task DeleteAsync(ProductVariationCreateDto dto);
+        public Task DeleteAsync(Guid id);
     }
 }

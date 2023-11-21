@@ -15,19 +15,21 @@ namespace Halevi.Core.Application.Interfaces
         /// <returns>The entity converted to Dto.</returns>
         /// <exception cref="Exception"></exception>
         /// <exception cref="Exception"></exception>
-        public Task<CategoryDto> GetByAsync(Guid id);
+        public Task<CategoryReadDto> GetByAsync(Guid id);
+
         /// <summary>
         /// Get the entity by the given Code.
         /// </summary>
         /// <param name="code">The entity Code.</param>
         /// <returns>The entity converted to Dto.</returns>
         /// <exception cref="Exception"></exception>
-        public Task<CategoryDto> GetByAsync(int code);
+        public Task<CategoryReadDto> GetByAsync(int code);
+
         /// <summary>
         /// Get all entities.
         /// </summary>
         /// <returns>The list of entities converted to Dto.</returns>
-        public Task<IEnumerable<CategoryDto>> GetAllAsync();
+        public Task<IEnumerable<CategoryReadDto>> GetAllAsync();
 
         /// <summary>
         /// Verify if exists an entity by the provided Id.
@@ -36,6 +38,7 @@ namespace Halevi.Core.Application.Interfaces
         /// <returns>True if exists; otherwise, false.</returns>
         /// <exception cref="Exception"></exception>
         public Task<bool> ExistsAsync(Guid id);
+
         /// <summary>
         /// Verify if exists an entity by the provided Code.
         /// </summary>
@@ -57,19 +60,20 @@ namespace Halevi.Core.Application.Interfaces
         /// <param name="dto">The Dto.</param>
         /// <returns>The created entity code.</returns>
         /// <exception cref="Exception"></exception>
-        public Task<int> CreateAsync(CategoryDto dto);
+        public Task<int> CreateAsync(CategoryCreateDto dto);
+
         /// <summary>
         /// Update the entity by the Dto.
         /// </summary>
         /// <param name="dto">The Dto.</param>
         /// <exception cref="Exception"></exception>
-        public Task UpdateAsync(CategoryDto dto);
+        public Task UpdateAsync(CategoryUpdateDto dto);
 
         /// <summary>
-        /// Delete the entity by the Dto.
+        /// Delete the entity by the id.
         /// </summary>
-        /// <param name="dto">The Dto.</param>
+        /// <param name="id">The Id of the entity.</param>
         /// <exception cref="Exception"></exception>
-        public Task DeleteAsync(CategoryDto dto);
+        public Task DeleteAsync(Guid id);
     }
 }
