@@ -135,7 +135,7 @@ namespace Halevi.Core.Application.Implementations
             {
                 if (dto.Code is null || dto.Code.Value <= 0)
                 {
-                    dto.Code = _repository.GetLastCode() + 1;
+                    dto.Code = await _repository.NewEntityCode();
                 }
 
                 ProductVariation variation = dto.ToEntity();

@@ -81,7 +81,7 @@ namespace Halevi.Core.Application.Implementations
             {
                 IEnumerable<Category> listOfCategories = await _repository.GetAllAsync();
 
-                if (listOfCategories is null)
+                if (listOfCategories is null || !listOfCategories.Any())
                 {
                     return null;
                 }
@@ -159,7 +159,7 @@ namespace Halevi.Core.Application.Implementations
             {
                 if (dto.Code is null || dto.Code.Value <= 0)
                 {
-                    dto.Code = _repository.GetLastCode() + 1;
+                    dto.Code = await _repository.NewEntityCode();
                 }
 
                 Category category = dto.ToEntity();

@@ -68,9 +68,19 @@ namespace Halevi.Infra.Implementations.Repositories.Base
                 .CountAsync();
         }
 
-        public virtual int GetLastCode()
+        public virtual async Task<int> NewEntityCode()
         {
-            return _dbSet.Max(x => x.Code);
+            int lastCode = await _dbSet
+                .OrderByDescending(x => x.Code)
+                .Select(x => x.Code)
+                .FirstOrDefaultAsync();
+
+            if (lastCode == 0)
+            {
+                return 1;
+            }
+
+            return lastCode + 1;
         }
 
         public virtual async Task<int> CreateAsync(TEntity entity)

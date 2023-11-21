@@ -20,7 +20,7 @@ namespace Halevi.Core.Domain.Interfaces.Repositories.Base
 
         Task<int> CreateAsync(TEntity entity);
 
-        int GetLastCode();
+        Task<int> NewEntityCode();
 
         Task UpdateAsync(TEntity entity);
 
