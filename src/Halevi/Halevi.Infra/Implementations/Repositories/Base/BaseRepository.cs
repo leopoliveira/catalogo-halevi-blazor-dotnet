@@ -70,7 +70,10 @@ namespace Halevi.Infra.Implementations.Repositories.Base
 
         public virtual int GetLastCode()
         {
-            return _dbSet.Max(x => x.Code);
+            return _dbSet
+                .Select(x => x.Code)
+                .DefaultIfEmpty(0)
+                .Max();
         }
 
         public virtual async Task<int> CreateAsync(TEntity entity)
