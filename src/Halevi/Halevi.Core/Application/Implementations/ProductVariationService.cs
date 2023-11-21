@@ -32,6 +32,11 @@ namespace Halevi.Core.Application.Implementations
             {
                 ProductVariation variation = await _repository.GetByAsync(id);
 
+                if (variation is null)
+                {
+                    return null;
+                }
+
                 return variation.ToReadDto();
             }
             catch (Exception ex)
@@ -39,6 +44,7 @@ namespace Halevi.Core.Application.Implementations
                 throw new Exception("Failed on trying to Get Product Variation by Id. Please try again later. Error: ", ex.InnerException);
             }
         }
+
         /// <summary>
         /// Get the entity by the given Code.
         /// </summary>
@@ -50,6 +56,11 @@ namespace Halevi.Core.Application.Implementations
             try
             {
                 ProductVariation variation = await _repository.GetByAsync(code);
+
+                if (variation is null)
+                {
+                    return null;
+                }
 
                 return variation.ToReadDto();
             }
@@ -76,6 +87,7 @@ namespace Halevi.Core.Application.Implementations
                 throw new Exception("Failed on trying to Get Product Variation by Id. Please try again later. Error: ", ex.InnerException);
             }
         }
+
         /// <summary>
         /// Verify if exists an entity by the provided Code.
         /// </summary>
@@ -136,6 +148,7 @@ namespace Halevi.Core.Application.Implementations
                 throw new Exception("Failed on trying to create Product Variation. Please try again later. Error: ", ex.InnerException);
             }
         }
+
         /// <summary>
         /// Update the entity by the Dto.
         /// </summary>

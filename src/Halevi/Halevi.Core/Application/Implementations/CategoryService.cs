@@ -33,6 +33,11 @@ namespace Halevi.Core.Application.Implementations
             {
                 Category category = await _repository.GetByAsync(id);
 
+                if (category is null)
+                {
+                    return null;
+                }
+
                 return category.ToDto();
             }
             catch(Exception ex)
@@ -40,6 +45,7 @@ namespace Halevi.Core.Application.Implementations
                 throw new Exception("Failed on trying to get Category by Id. Please try again later. Error: ", ex.InnerException);
             }
         }
+
         /// <summary>
         /// get the entity by the given Code.
         /// </summary>
@@ -52,6 +58,11 @@ namespace Halevi.Core.Application.Implementations
             {
                 Category category = await _repository.GetByAsync(code);
 
+                if (category is null)
+                {
+                    return null;
+                }
+
                 return category.ToDto();
             }
             catch (Exception ex)
@@ -59,6 +70,7 @@ namespace Halevi.Core.Application.Implementations
                 throw new Exception("Failed on trying to get Category by Code. Please try again later. Error: ", ex.InnerException);
             }
         }
+
         /// <summary>
         /// Get all entities.
         /// </summary>
@@ -68,6 +80,11 @@ namespace Halevi.Core.Application.Implementations
             try
             {
                 IEnumerable<Category> listOfCategories = await _repository.GetAllAsync();
+
+                if (listOfCategories is null)
+                {
+                    return null;
+                }
 
                 return listOfCategories.Select(x => x.ToDto());
             }
@@ -94,6 +111,7 @@ namespace Halevi.Core.Application.Implementations
                 throw new Exception("Failed on trying to get Category by Id. Please try again later. Error: ", ex.InnerException);
             }
         }
+
         /// <summary>
         /// Verify if exists an entity by the provided Code.
         /// </summary>
@@ -154,6 +172,7 @@ namespace Halevi.Core.Application.Implementations
                 throw new Exception("Failed on trying to create Category. Please try again later. Error: ", ex.InnerException);
             }
         }
+
         /// <summary>
         /// Update the entity by the Dto.
         /// </summary>
