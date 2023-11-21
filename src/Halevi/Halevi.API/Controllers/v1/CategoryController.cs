@@ -26,14 +26,64 @@ namespace Halevi.API.Controllers.v1
         /// <summary>
         /// Get all Categories.
         /// </summary>
-        /// <returns>All Categories.</returns>
+        /// <returns>All Categories or NotFound.</returns>
         // api/v1/Category
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<CategoryDto>>> Get()
         {
-            return Ok(await _service.GetAllAsync());
+            var categories = await _service.GetAllAsync();
+
+            return categories is null ?
+                   NotFound() :
+                   Ok(categories);
+        }
+
+        /// <summary>
+        /// Get Category by Id.
+        /// </summary>
+        /// <param name="id">Category Id.</param>
+        /// <returns>The Category or NotFound.</returns>
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<CategoryDto>> GetById(string id)
+        {
+            if (Guid.TryParse(id, out Guid categoryId))
+            {
+                return BadRequest("The id is in an invalid format.");
+            }
+
+            var category = await _service.GetByAsync(categoryId);
+
+            return category is null ?
+                   NotFound() :
+                   Ok(category);
+        }
+
+        /// <summary>
+        /// Get Category by Code.
+        /// </summary>
+        /// <param name="code">Category Code.</param>
+        /// <returns>The Category or NotFound.</returns>
+        [HttpGet("{code:int}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<CategoryDto>> GetByCode(int code)
+        {
+            if (code <= 0)
+            {
+                return BadRequest("The code is in invalid. It should be greater than zero.");
+            }
+
+            var category = await _service.GetByAsync(code);
+
+            return category is null ?
+                   NotFound() :
+                   Ok(category);
         }
     }
 }
