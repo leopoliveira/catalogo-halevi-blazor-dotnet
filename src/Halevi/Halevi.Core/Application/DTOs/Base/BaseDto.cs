@@ -2,10 +2,8 @@
 {
     public record BaseDto()
     {
-        public Guid Id { get; set; }
-
         public int? Code { get; set; }
 
-        public bool Active { get; set; }
+        public bool Active { get; set; } = true;
     }
 }
