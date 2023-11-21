@@ -29,9 +29,10 @@ namespace Halevi.API.Controllers.v1
         /// <returns>All Categories or NotFound.</returns>
         // api/v1/Category
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<CategoryDto>>> Get()
+        public async Task<ActionResult<IEnumerable<CategoryReadDto>>> Get()
         {
             var categories = await _service.GetAllAsync();
 
@@ -46,10 +47,11 @@ namespace Halevi.API.Controllers.v1
         /// <param name="id">Category Id.</param>
         /// <returns>The Category or NotFound.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<CategoryDto>> GetById(string id)
+        public async Task<ActionResult<CategoryReadDto>> GetById(string id)
         {
             if (Guid.TryParse(id, out Guid categoryId))
             {
@@ -69,10 +71,11 @@ namespace Halevi.API.Controllers.v1
         /// <param name="code">Category Code.</param>
         /// <returns>The Category or NotFound.</returns>
         [HttpGet("{code:int}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<CategoryDto>> GetByCode(int code)
+        public async Task<ActionResult<CategoryReadDto>> GetByCode(int code)
         {
             if (code <= 0)
             {
@@ -84,6 +87,25 @@ namespace Halevi.API.Controllers.v1
             return category is null ?
                    NotFound() :
                    Ok(category);
+        }
+
+        /// <summary>
+        /// Create a Category.
+        /// </summary>
+        /// <param name="category">The category data.</param>
+        /// <returns>The code of created Category if creation was successeful or BadRequest.</returns>
+        /// <remarks>
+        ///     Code is optional.
+        ///     If code was not passed or is less than or equal to zero, a code will be added by the application.
+        /// </remarks>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<int>> Create(CategoryCreateDto category)
+        {
+            int resultCode = await _service.CreateAsync(category);
+
+            return CreatedAtAction(nameof(GetByCode), new { code = resultCode }, category);
         }
     }
 }
