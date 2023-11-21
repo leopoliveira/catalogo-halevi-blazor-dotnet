@@ -21,10 +21,10 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Get the entity by the given Id.
+        /// Get the variation by the given Id.
         /// </summary>
-        /// <param name="id">The entity Id.</param>
-        /// <returns>The entity converted to Dto or null.</returns>
+        /// <param name="id">The variation Id.</param>
+        /// <returns>The variation converted to Dto or null.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<ProductVariationReadDto> GetByAsync(Guid id)
         {
@@ -46,10 +46,10 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Get the entity by the given Code.
+        /// Get the variation by the given Code.
         /// </summary>
-        /// <param name="code">The entity Code.</param>
-        /// <returns>The entity converted to Dto or null.</returns>
+        /// <param name="code">The variation Code.</param>
+        /// <returns>The variation converted to Dto or null.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<ProductVariationReadDto> GetByAsync(int code)
         {
@@ -71,9 +71,9 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Verify if exists an entity by the provided Id.
+        /// Verify if exists an variation by the provided Id.
         /// </summary>
-        /// <param name="id">The entity Id.</param>
+        /// <param name="id">The variation Id.</param>
         /// <returns>True if exists; otherwise, false.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<bool> ExistsAsync(Guid id)
@@ -89,9 +89,9 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Verify if exists an entity by the provided Code.
+        /// Verify if exists an variation by the provided Code.
         /// </summary>
-        /// <param name="code">The entity Code.</param>
+        /// <param name="code">The variation Code.</param>
         /// <returns>True if exists; otherwise, false.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<bool> ExistsAsync(int code)
@@ -124,20 +124,20 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Create the entity by the Dto and returns the code.
+        /// Create the variation by the Dto and returns the code.
         /// </summary>
         /// <param name="dto">The Dto.</param>
-        /// <returns>The created entity code.</returns>
+        /// <returns>The created variation code.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<int> CreateAsync(ProductVariationCreateDto dto)
         {
             try
             {
-                ProductVariation entity = dto.ToEntity();
+                ProductVariation variation = dto.ToEntity();
 
-                _validator.ValidateAndThrow(entity);
+                _validator.ValidateAndThrow(variation);
 
-                return await _repository.CreateAsync(entity);
+                return await _repository.CreateAsync(variation);
             }
             catch (ValidationException ex)
             {
@@ -150,19 +150,19 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Update the entity by the Dto.
+        /// Update the variation by the Dto.
         /// </summary>
         /// <param name="dto">The Dto.</param>
         /// <exception cref="Exception"></exception>
-        public async Task UpdateAsync(ProductVariationCreateDto dto)
+        public async Task UpdateAsync(ProductVariationUpdateDto dto)
         {
             try
             {
-                ProductVariation entity = dto.ToEntity();
+                ProductVariation variation = dto.ToEntity();
 
-                _validator.ValidateAndThrow(entity);
+                _validator.ValidateAndThrow(variation);
 
-                await _repository.UpdateAsync(entity);
+                await _repository.UpdateAsync(variation);
             }
             catch (ValidationException ex)
             {
@@ -175,19 +175,24 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Delete the entity by the Dto.
+        /// Delete the variation by the Id.
         /// </summary>
-        /// <param name="dto">The Dto.</param>
+        /// <param name="id">The variation id.</param>
         /// <exception cref="Exception"></exception>
-        public async Task DeleteAsync(ProductVariationCreateDto dto)
+        public async Task DeleteAsync(Guid id)
         {
             try
             {
-                ProductVariation entity = dto.ToEntity();
+                ProductVariation variation = await _repository.GetByAsync(id);
 
-                _validator.ValidateAndThrow(entity);
+                if (variation is null)
+                {
+                    throw new ArgumentException("The Product Variation was not found.");
+                }
 
-                await _repository.DeleteAsync(entity);
+                _validator.ValidateAndThrow(variation);
+
+                await _repository.DeleteAsync(variation);
             }
             catch (ValidationException ex)
             {

@@ -22,12 +22,12 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// get the entity by the given Id.
+        /// get the category by the given Id.
         /// </summary>
-        /// <param name="id">The entity Id.</param>
-        /// <returns>The entity converted to Dto or null.</returns>
+        /// <param name="id">The category Id.</param>
+        /// <returns>The category converted to Dto or null.</returns>
         /// <exception cref="Exception"></exception>
-        public async Task<CategoryDto> GetByAsync(Guid id)
+        public async Task<CategoryReadDto> GetByAsync(Guid id)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Halevi.Core.Application.Implementations
                     return null;
                 }
 
-                return category.ToDto();
+                return category.ToReadDto();
             }
             catch(Exception ex)
             {
@@ -47,12 +47,12 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// get the entity by the given Code.
+        /// get the category by the given Code.
         /// </summary>
-        /// <param name="code">The entity Code.</param>
-        /// <returns>The entity converted to Dto or null.</returns>
+        /// <param name="code">The category Code.</param>
+        /// <returns>The category converted to Dto or null.</returns>
         /// <exception cref="Exception"></exception>
-        public async Task<CategoryDto> GetByAsync(int code)
+        public async Task<CategoryReadDto> GetByAsync(int code)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Halevi.Core.Application.Implementations
                     return null;
                 }
 
-                return category.ToDto();
+                return category.ToReadDto();
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace Halevi.Core.Application.Implementations
         /// Get all entities.
         /// </summary>
         /// <returns>The list of entities converted to Dto or null.</returns>
-        public async Task<IEnumerable<CategoryDto>> GetAllAsync()
+        public async Task<IEnumerable<CategoryReadDto>> GetAllAsync()
         {
             try
             {
@@ -86,7 +86,7 @@ namespace Halevi.Core.Application.Implementations
                     return null;
                 }
 
-                return listOfCategories.Select(x => x.ToDto());
+                return listOfCategories.Select(x => x.ToReadDto());
             }
             catch (Exception ex)
             {
@@ -95,9 +95,9 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Verify if exists an entity by the provided Id.
+        /// Verify if exists an category by the provided Id.
         /// </summary>
-        /// <param name="id">The entity Id.</param>
+        /// <param name="id">The category Id.</param>
         /// <returns>True if exists; otherwise, false.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<bool> ExistsAsync(Guid id)
@@ -113,9 +113,9 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Verify if exists an entity by the provided Code.
+        /// Verify if exists an category by the provided Code.
         /// </summary>
-        /// <param name="code">The entity Code.</param>
+        /// <param name="code">The category Code.</param>
         /// <returns>True if exists; otherwise, false.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<bool> ExistsAsync(int code)
@@ -148,20 +148,20 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Create the entity by the Dto and returns the code.
+        /// Create the category by the Dto and returns the code.
         /// </summary>
         /// <param name="dto">The Dto.</param>
-        /// <returns>The created entity code.</returns>
+        /// <returns>The created category code.</returns>
         /// <exception cref="Exception"></exception>
-        public async Task<int> CreateAsync(CategoryDto dto)
+        public async Task<int> CreateAsync(CategoryCreateDto dto)
         {
             try
             {
-                Category entity = dto.ToEntity();
+                Category category = dto.ToEntity();
 
-                _validator.ValidateAndThrow(entity);
+                _validator.ValidateAndThrow(category);
 
-                return await _repository.CreateAsync(entity);
+                return await _repository.CreateAsync(category);
             }
             catch (ValidationException ex)
             {
@@ -174,19 +174,19 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Update the entity by the Dto.
+        /// Update the category by the Dto.
         /// </summary>
         /// <param name="dto">The Dto.</param>
         /// <exception cref="Exception"></exception>
-        public async Task UpdateAsync(CategoryDto dto)
+        public async Task UpdateAsync(CategoryUpdateDto dto)
         {
             try
             {
-                Category entity = dto.ToEntity();
+                Category category = dto.ToEntity();
 
-                _validator.ValidateAndThrow(entity);
+                _validator.ValidateAndThrow(category);
 
-                await _repository.UpdateAsync(entity);
+                await _repository.UpdateAsync(category);
             }
             catch (ValidationException ex)
             {
@@ -199,19 +199,24 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Delete the entity by the Dto.
+        /// Delete the category by the Id.
         /// </summary>
-        /// <param name="dto">The Dto.</param>
+        /// <param name="id">The Id.</param>
         /// <exception cref="Exception"></exception>
-        public async Task DeleteAsync(CategoryDto dto)
+        public async Task DeleteAsync(Guid id)
         {
             try
             {
-                Category entity = dto.ToEntity();
+                Category category = await _repository.GetByAsync(id);
 
-                _validator.ValidateAndThrow(entity);
+                if (category is null)
+                {
+                    throw new ArgumentException("The Category was not found.");
+                }
 
-                await _repository.DeleteAsync(entity);
+                _validator.ValidateAndThrow(category);
+
+                await _repository.DeleteAsync(category);
             }
             catch (ValidationException ex)
             {
