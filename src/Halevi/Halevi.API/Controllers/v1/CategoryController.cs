@@ -107,5 +107,19 @@ namespace Halevi.API.Controllers.v1
 
             return CreatedAtAction(nameof(GetByCode), new { code = resultCode }, category);
         }
+
+        /// <summary>
+        /// Update the given Category.
+        /// </summary>
+        /// <param name="category">The category.</param>
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> Update(CategoryUpdateDto category)
+        {
+            await _service.UpdateAsync(category);
+
+            return Ok(Url.Action(nameof(GetById), new { id = category.Id }));
+        }
     }
 }
