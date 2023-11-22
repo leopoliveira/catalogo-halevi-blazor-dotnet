@@ -162,6 +162,11 @@ namespace Halevi.Core.Application.Implementations
                     dto.Code = await _repository.NewEntityCode();
                 }
 
+                if (await _repository.GetByAsync(dto.Code.Value) is not null)
+                {
+                    throw new ArgumentException("This code already exist.");
+                }
+
                 Category category = dto.ToEntity();
 
                 _validator.ValidateAndThrow(category);
@@ -171,6 +176,10 @@ namespace Halevi.Core.Application.Implementations
             catch (ValidationException ex)
             {
                 throw new ValidationException("Validation Errors: ", ex.Errors);
+            }
+            catch (ArgumentException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -187,7 +196,20 @@ namespace Halevi.Core.Application.Implementations
         {
             try
             {
-                Category category = dto.ToEntity();
+                if (IdOrCodeNotValid(dto))
+                {
+                    throw new ArgumentException("The Id or Code is not valid.");
+                }
+
+                Category category = await _repository.GetByAsync(dto.Id) ??
+                    throw new ArgumentException("Category not found.");
+
+                if (IdOrCodeWasModified(dto, category))
+                {
+                    throw new InvalidOperationException("When update a entity, neither Id or Code can be modified.");
+                }
+
+                category = dto.ToEntity();
 
                 _validator.ValidateAndThrow(category);
 
@@ -196,6 +218,14 @@ namespace Halevi.Core.Application.Implementations
             catch (ValidationException ex)
             {
                 throw new ValidationException("Validation Errors: ", ex.Errors);
+            }
+            catch (ArgumentException)
+            {
+                throw;
+            }
+            catch (InvalidOperationException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -231,6 +261,19 @@ namespace Halevi.Core.Application.Implementations
             {
                 throw new Exception("Failed on trying to delete Category. Please try again later. Error: ", ex.InnerException);
             }
+        }
+
+        private static bool IdOrCodeNotValid(CategoryUpdateDto dto)
+        {
+            return dto.Id == Guid.Empty ||
+                   dto.Code is null ||
+                   dto.Code <= 0;
+        }
+
+        private static bool IdOrCodeWasModified(CategoryUpdateDto dto, Category category)
+        {
+            return dto.Code != category.Code ||
+                   dto.Id != category.Id;
         }
     }
 }

@@ -138,6 +138,11 @@ namespace Halevi.Core.Application.Implementations
                     dto.Code = await _repository.NewEntityCode();
                 }
 
+                if (await _repository.GetByAsync(dto.Code.Value) is not null)
+                {
+                    throw new ArgumentException("This code already exist.");
+                }
+
                 Product product = dto.ToEntity();
 
                 _validator.ValidateAndThrow(product);
@@ -147,6 +152,10 @@ namespace Halevi.Core.Application.Implementations
             catch (ValidationException ex)
             {
                 throw new ValidationException("Validation Errors: ", ex.Errors);
+            }
+            catch (ArgumentException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -163,7 +172,20 @@ namespace Halevi.Core.Application.Implementations
         {
             try
             {
-                Product product = dto.ToEntity();
+                if (IdOrCodeNotValid(dto))
+                {
+                    throw new ArgumentException("The Id or Code is not valid.");
+                }
+
+                Product product = await _repository.GetByAsync(dto.Id) ??
+                    throw new ArgumentException("Product not found.");
+
+                if (IdOrCodeWasModified(dto, product))
+                {
+                    throw new InvalidOperationException("When update a entity, neither Id or Code can be modified.");
+                }
+
+                product = dto.ToEntity();
 
                 _validator.ValidateAndThrow(product);
 
@@ -172,6 +194,14 @@ namespace Halevi.Core.Application.Implementations
             catch (ValidationException ex)
             {
                 throw new ValidationException("Validation Errors: ", ex.Errors);
+            }
+            catch (ArgumentException)
+            {
+                throw;
+            }
+            catch (InvalidOperationException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -207,6 +237,19 @@ namespace Halevi.Core.Application.Implementations
             {
                 throw new Exception("Failed on trying to delete Product. Please try again later. Error: ", ex.InnerException);
             }
+        }
+
+        private static bool IdOrCodeNotValid(ProductUpdateDto dto)
+        {
+            return dto.Id == Guid.Empty ||
+                   dto.Code is null ||
+                   dto.Code <= 0;
+        }
+
+        private static bool IdOrCodeWasModified(ProductUpdateDto dto, Product product)
+        {
+            return dto.Code != product.Code ||
+                   dto.Id != product.Id;
         }
     }
 }
