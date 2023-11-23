@@ -121,5 +121,45 @@ namespace Halevi.API.Controllers.v1
 
             return Ok(Url.Action(nameof(GetById), new { id = category.Id }));
         }
+
+        /// <summary>
+        /// Deletes the category by id.
+        /// </summary>
+        /// <param name="id">Category Id.</param>
+        [HttpDelete("DeleteById/{id}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> Delete(string id)
+        {
+            if (Guid.TryParse(id, out Guid categoryId))
+            {
+                return BadRequest("The id is in an invalid format.");
+            }
+
+            await _service.DeleteAsync(categoryId);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Deletes the category by code.
+        /// </summary>
+        /// <param name="code">Category Code.</param>
+        [HttpDelete("{code}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> Delete(int code)
+        {
+            if (code <= 0)
+            {
+                return BadRequest("The code is in an invalid format.");
+            }
+
+            await _service.DeleteAsync(code);
+
+            return NoContent();
+        }
     }
 }
