@@ -30,7 +30,9 @@ namespace Halevi.Infra.DbConfig.Configurations.Base
                 .Property(x => x.Active)
                 .HasColumnType(SQLiteDataTypes.INTEGER);
 
-            builder.HasIndex(x => x.Code);
+            builder
+                .HasIndex(x => x.Code)
+                .IsUnique();
         }
     }
 }
