@@ -75,5 +75,12 @@ namespace Halevi.Core.Application.Interfaces
         /// <param name="id">The Id of the entity.</param>
         /// <exception cref="Exception"></exception>
         public Task DeleteAsync(Guid id);
+
+        /// <summary>
+        /// Delete the entity by the code.
+        /// </summary>
+        /// <param name="code">The Code of the entity.</param>
+        /// <exception cref="Exception"></exception>
+        public Task DeleteAsync(int code);
     }
 }

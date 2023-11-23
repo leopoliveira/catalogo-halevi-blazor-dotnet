@@ -212,22 +212,43 @@ namespace Halevi.Core.Application.Implementations
         /// <summary>
         /// Delete the variation by the Id.
         /// </summary>
-        /// <param name="id">The variation id.</param>
+        /// <param name="id">The Id.</param>
         /// <exception cref="Exception"></exception>
         public async Task DeleteAsync(Guid id)
         {
+            ProductVariation variation = await _repository.GetByAsync(id);
+
+            await Delete(variation);
+        }
+
+        /// <summary>
+        /// Delete the entity by the code.
+        /// </summary>
+        /// <param name="code">The Code of the entity.</param>
+        /// <exception cref="Exception"></exception>
+        public async Task DeleteAsync(int code)
+        {
+            ProductVariation variation = await _repository.GetByAsync(code);
+
+            await Delete(variation);
+        }
+
+        private async Task Delete(ProductVariation variation)
+        {
             try
             {
-                ProductVariation variation = await _repository.GetByAsync(id);
-
                 if (variation is null)
                 {
-                    throw new ArgumentException("The Product Variation was not found.");
+                    throw new ArgumentException("The ProductVariation was not found.");
                 }
 
                 _validator.ValidateAndThrow(variation);
 
                 await _repository.DeleteAsync(variation);
+            }
+            catch (ArgumentException)
+            {
+                throw;
             }
             catch (ValidationException ex)
             {
@@ -235,7 +256,7 @@ namespace Halevi.Core.Application.Implementations
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed on trying to delete Product Variation. Please try again later. Error: ", ex.InnerException);
+                throw new Exception("Failed on trying to delete ProductVariation. Please try again later. Error: ", ex.InnerException);
             }
         }
 

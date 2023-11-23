@@ -240,10 +240,27 @@ namespace Halevi.Core.Application.Implementations
         /// <exception cref="Exception"></exception>
         public async Task DeleteAsync(Guid id)
         {
+            Category category = await _repository.GetByAsync(id);
+
+            await Delete(category);
+        }
+
+        /// <summary>
+        /// Delete the entity by the code.
+        /// </summary>
+        /// <param name="code">The Code of the entity.</param>
+        /// <exception cref="Exception"></exception>
+        public async Task DeleteAsync(int code)
+        {
+            Category category = await _repository.GetByAsync(code);
+
+            await Delete(category);
+        }
+
+        private async Task Delete(Category category)
+        {
             try
             {
-                Category category = await _repository.GetByAsync(id);
-
                 if (category is null)
                 {
                     throw new ArgumentException("The Category was not found.");
@@ -252,6 +269,10 @@ namespace Halevi.Core.Application.Implementations
                 _validator.ValidateAndThrow(category);
 
                 await _repository.DeleteAsync(category);
+            }
+            catch (ArgumentException)
+            {
+                throw;
             }
             catch (ValidationException ex)
             {

@@ -210,16 +210,33 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
-        /// Delete the product by the Dto.
+        /// Delete the product by the Id.
         /// </summary>
-        /// <param name="id">The product id.</param>
+        /// <param name="id">The Id.</param>
         /// <exception cref="Exception"></exception>
         public async Task DeleteAsync(Guid id)
         {
+            Product product = await _repository.GetByAsync(id);
+
+            await Delete(product);
+        }
+
+        /// <summary>
+        /// Delete the entity by the code.
+        /// </summary>
+        /// <param name="code">The Code of the entity.</param>
+        /// <exception cref="Exception"></exception>
+        public async Task DeleteAsync(int code)
+        {
+            Product product = await _repository.GetByAsync(code);
+
+            await Delete(product);
+        }
+
+        private async Task Delete(Product product)
+        {
             try
             {
-                Product product = await _repository.GetByAsync(id);
-
                 if (product is null)
                 {
                     throw new ArgumentException("The Product was not found.");
@@ -228,6 +245,10 @@ namespace Halevi.Core.Application.Implementations
                 _validator.ValidateAndThrow(product);
 
                 await _repository.DeleteAsync(product);
+            }
+            catch (ArgumentException)
+            {
+                throw;
             }
             catch (ValidationException ex)
             {
