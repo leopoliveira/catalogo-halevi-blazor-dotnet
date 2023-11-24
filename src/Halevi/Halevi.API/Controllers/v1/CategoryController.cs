@@ -28,7 +28,7 @@ namespace Halevi.API.Controllers.v1
         /// </summary>
         /// <returns>All Categories or NotFound.</returns>
         // api/v1/Category
-        [HttpGet]
+        [HttpGet("getAll")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -46,7 +46,7 @@ namespace Halevi.API.Controllers.v1
         /// </summary>
         /// <param name="id">Category Id.</param>
         /// <returns>The Category or NotFound.</returns>
-        [HttpGet("{id}")]
+        [HttpGet("getById/{id}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -70,7 +70,7 @@ namespace Halevi.API.Controllers.v1
         /// </summary>
         /// <param name="code">Category Code.</param>
         /// <returns>The Category or NotFound.</returns>
-        [HttpGet("{code:int}")]
+        [HttpGet("getByCode/{code:int}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -98,7 +98,7 @@ namespace Halevi.API.Controllers.v1
         ///     Code is optional.
         ///     If code was not passed or is less than or equal to zero, a code will be added by the application.
         /// </remarks>
-        [HttpPost]
+        [HttpPost("create")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<int>> Create(CategoryCreateDto category)
@@ -112,7 +112,7 @@ namespace Halevi.API.Controllers.v1
         /// Update the given Category.
         /// </summary>
         /// <param name="category">The category.</param>
-        [HttpPut]
+        [HttpPut("update")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Update(CategoryUpdateDto category)
@@ -126,7 +126,7 @@ namespace Halevi.API.Controllers.v1
         /// Deletes the category by id.
         /// </summary>
         /// <param name="id">Category Id.</param>
-        [HttpDelete("DeleteById/{id}")]
+        [HttpDelete("deleteById/{id}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -146,7 +146,7 @@ namespace Halevi.API.Controllers.v1
         /// Deletes the category by code.
         /// </summary>
         /// <param name="code">Category Code.</param>
-        [HttpDelete("{code}")]
+        [HttpDelete("deleteByCode/{code}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

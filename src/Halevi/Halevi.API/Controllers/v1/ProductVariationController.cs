@@ -27,7 +27,7 @@ namespace Halevi.API.Controllers.v1
         /// </summary>
         /// <param name="id">ProductVariation Id.</param>
         /// <returns>The ProductVariation or NotFound.</returns>
-        [HttpGet("{id}")]
+        [HttpGet("getById/{id}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -51,7 +51,7 @@ namespace Halevi.API.Controllers.v1
         /// </summary>
         /// <param name="code">ProductVariation Code.</param>
         /// <returns>The ProductVariation or NotFound.</returns>
-        [HttpGet("{code:int}")]
+        [HttpGet("getByCode/{code:int}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -127,7 +127,7 @@ namespace Halevi.API.Controllers.v1
         ///     Code is optional.
         ///     If code was not passed or is less than or equal to zero, a code will be added by the application.
         /// </remarks>
-        [HttpPost]
+        [HttpPost("create")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<int>> Create(ProductVariationCreateDto variation)
@@ -141,7 +141,7 @@ namespace Halevi.API.Controllers.v1
         /// Update the given ProductVariation.
         /// </summary>
         /// <param name="variation">The variation.</param>
-        [HttpPut]
+        [HttpPut("update")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Update(ProductVariationUpdateDto variation)
@@ -155,7 +155,7 @@ namespace Halevi.API.Controllers.v1
         /// Deletes the variation by id.
         /// </summary>
         /// <param name="id">ProductVariation Id.</param>
-        [HttpDelete("DeleteById/{id}")]
+        [HttpDelete("deleteById/{id}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -175,7 +175,7 @@ namespace Halevi.API.Controllers.v1
         /// Deletes the variation by code.
         /// </summary>
         /// <param name="code">ProductVariation Code.</param>
-        [HttpDelete("{code}")]
+        [HttpDelete("deleteByCode/{code}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
