@@ -22,6 +22,22 @@ namespace Halevi.Core.Application.Interfaces
         public Task<ProductVariationReadDto> GetByAsync(int code);
 
         /// <summary>
+        /// Get the entities by the given Product Code.
+        /// </summary>
+        /// <param name="productCode">The Product code.</param>
+        /// <returns>The list of entities converted to list of Dto.</returns>
+        /// <exception cref="Exception"></exception>
+        public Task<IEnumerable<ProductVariationReadDto>> GetByProduct(int productCode);
+
+        /// <summary>
+        /// Get the entities by the given Product Id.
+        /// </summary>
+        /// <param name="productId">The Product id.</param>
+        /// <returns>The list of entities converted to list of Dto.</returns>
+        /// <exception cref="Exception"></exception>
+        public Task<IEnumerable<ProductVariationReadDto>> GetByProduct(Guid productId);
+
+        /// <summary>
         /// Verify if exists an entity by the provided Id.
         /// </summary>
         /// <param name="id">The entity Id.</param>

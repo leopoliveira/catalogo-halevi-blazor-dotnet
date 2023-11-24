@@ -71,6 +71,56 @@ namespace Halevi.Core.Application.Implementations
         }
 
         /// <summary>
+        /// Get the entities by the given Product Code.
+        /// </summary>
+        /// <param name="productCode">The Product code.</param>
+        /// <returns>The list of entities converted to list of Dto or null.</returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<IEnumerable<ProductVariationReadDto>> GetByProduct(int productCode)
+        {
+            try
+            {
+                IEnumerable<ProductVariation> productVariations = await _repository.GetByProduct(productCode);
+
+                if (productVariations is null || !productVariations.Any())
+                {
+                    return null;
+                }
+
+                return productVariations.Select(x => x.ToReadDto());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed on trying to Get Product Variation by Product Code. Please try again later. Error: ", ex.InnerException);
+            }
+        }
+
+        /// <summary>
+        /// Get the entities by the given Product Id.
+        /// </summary>
+        /// <param name="productId">The Product id.</param>
+        /// <returns>The list of entities converted to list of Dto.</returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<IEnumerable<ProductVariationReadDto>> GetByProduct(Guid productId)
+        {
+            try
+            {
+                IEnumerable<ProductVariation> productVariations = await _repository.GetByProduct(productId);
+
+                if (productVariations is null || !productVariations.Any())
+                {
+                    return null;
+                }
+
+                return productVariations.Select(x => x.ToReadDto());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed on trying to Get Product Variation by Product Code. Please try again later. Error: ", ex.InnerException);
+            }
+        }
+
+        /// <summary>
         /// Verify if exists an variation by the provided Id.
         /// </summary>
         /// <param name="id">The variation Id.</param>
