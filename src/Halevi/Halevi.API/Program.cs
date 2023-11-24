@@ -38,6 +38,8 @@ namespace Halevi.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
+            builder.Services.Configure<RouteOptions>(opt => opt.LowercaseUrls = true);
+
             // Swagger configuration.
             builder.Services.AddSwaggerGen(opt =>
             {
