@@ -34,12 +34,12 @@ namespace Halevi.API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ProductReadDto>> GetById(string id)
         {
-            if (Guid.TryParse(id, out Guid categoryId))
+            if (Guid.TryParse(id, out Guid productId))
             {
                 return BadRequest("The id is in an invalid format.");
             }
 
-            var product = await _service.GetByAsync(categoryId);
+            var product = await _service.GetByAsync(productId);
 
             return product is null ?
                    NotFound() :
@@ -113,12 +113,12 @@ namespace Halevi.API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> Delete(string id)
         {
-            if (Guid.TryParse(id, out Guid categoryId))
+            if (Guid.TryParse(id, out Guid productId))
             {
                 return BadRequest("The id is in an invalid format.");
             }
 
-            await _service.DeleteAsync(categoryId);
+            await _service.DeleteAsync(productId);
 
             return NoContent();
         }
