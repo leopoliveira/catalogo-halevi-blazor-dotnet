@@ -5,7 +5,6 @@ using Halevi.Core.Application.Interfaces;
 using Halevi.Core.Application.Mappers;
 using Halevi.Core.Domain.Entities;
 using Halevi.Core.Domain.Interfaces.Repositories;
-using Halevi.Core.Domain.Utils;
 using Halevi.Core.Domain.Validations;
 
 namespace Halevi.Core.Application.Implementations
