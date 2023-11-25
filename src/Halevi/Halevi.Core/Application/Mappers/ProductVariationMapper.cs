@@ -7,6 +7,11 @@ namespace Halevi.Core.Application.Mappers
     {
         public static ProductVariation ToEntity(this ProductVariationCreateDto dto)
         {
+            if (dto is null)
+            {
+                throw new ArgumentNullException(nameof(dto), "Dto can't be null.");
+            }
+
             return new ProductVariation()
             {
                 Code = dto.Code.Value,
@@ -19,6 +24,11 @@ namespace Halevi.Core.Application.Mappers
 
         public static ProductVariation ToEntity(this ProductVariationUpdateDto dto)
         {
+            if (dto is null)
+            {
+                throw new ArgumentNullException(nameof(dto), "Dto can't be null.");
+            }
+
             return new ProductVariation()
             {
                 Id = dto.Id,
@@ -32,6 +42,11 @@ namespace Halevi.Core.Application.Mappers
 
         public static ProductVariationReadDto ToReadDto(this ProductVariation productVariation)
         {
+            if (productVariation is null)
+            {
+                throw new ArgumentNullException(nameof(productVariation), "Product Variation can't be null.");
+            }
+
             return new ProductVariationReadDto()
             {
                 Id = productVariation.Id,
@@ -46,6 +61,11 @@ namespace Halevi.Core.Application.Mappers
 
         public static ProductVariationUpdateDto ToUpdateDto(this ProductVariation productVariation)
         {
+            if (productVariation is null)
+            {
+                throw new ArgumentNullException(nameof(productVariation), "Product Variation can't be null.");
+            }
+
             return new ProductVariationUpdateDto()
             {
                 Id = productVariation.Id,

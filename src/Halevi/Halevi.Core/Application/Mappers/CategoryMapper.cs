@@ -7,6 +7,11 @@ namespace Halevi.Core.Application.Mappers
     {
         public static Category ToEntity(this CategoryCreateDto dto)
         {
+            if (dto is null)
+            {
+                throw new ArgumentNullException(nameof(dto), "Dto can't be null.");
+            }
+
             return new Category()
             {
                 Name = dto.Name,
@@ -17,6 +22,11 @@ namespace Halevi.Core.Application.Mappers
 
         public static Category ToEntity(this CategoryUpdateDto dto)
         {
+            if (dto is null)
+            {
+                throw new ArgumentNullException(nameof(dto), "Dto can't be null.");
+            }
+
             return new Category()
             {
                 Name = dto.Name,
@@ -28,6 +38,11 @@ namespace Halevi.Core.Application.Mappers
 
         public static CategoryReadDto ToReadDto(this Category category)
         {
+            if (category is null)
+            {
+                throw new ArgumentNullException(nameof(category), "Category can't be null.");
+            }
+
             return new CategoryReadDto()
             {
                 Id = category.Id,
@@ -39,6 +54,11 @@ namespace Halevi.Core.Application.Mappers
 
         public static CategoryUpdateDto ToUpdateDto(this Category category)
         {
+            if (category is null)
+            {
+                throw new ArgumentNullException(nameof(category), "Category can't be null.");
+            }
+
             return new CategoryUpdateDto()
             {
                 Id = category.Id,
