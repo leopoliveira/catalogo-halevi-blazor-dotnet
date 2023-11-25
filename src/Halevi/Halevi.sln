@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Halevi.Core", "Halevi.Core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Halevi.Infra", "Halevi.Infra\Halevi.Infra.csproj", "{FF33C17D-6FF1-4D77-8846-03D3D567516C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halevi.Enums", "Halevi.Enums\Halevi.Enums.csproj", "{B64CCFFF-1D02-4EA4-A43D-AC0088F36140}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Halevi.Enums", "Halevi.Enums\Halevi.Enums.csproj", "{B64CCFFF-1D02-4EA4-A43D-AC0088F36140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halevi.Tests", "Halevi.Tests\Halevi.Tests.csproj", "{AD531E0F-9AE5-4E82-955E-625A1B61B1F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B64CCFFF-1D02-4EA4-A43D-AC0088F36140}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B64CCFFF-1D02-4EA4-A43D-AC0088F36140}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B64CCFFF-1D02-4EA4-A43D-AC0088F36140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD531E0F-9AE5-4E82-955E-625A1B61B1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD531E0F-9AE5-4E82-955E-625A1B61B1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD531E0F-9AE5-4E82-955E-625A1B61B1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD531E0F-9AE5-4E82-955E-625A1B61B1F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
