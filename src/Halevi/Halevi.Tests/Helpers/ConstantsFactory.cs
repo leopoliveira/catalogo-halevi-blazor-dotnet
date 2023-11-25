@@ -1,4 +1,4 @@
-﻿namespace Halevi.Tests.Tests.Unit.Helpers
+﻿namespace Halevi.Tests.Helpers
 {
     internal static class ConstantsFactory
     {

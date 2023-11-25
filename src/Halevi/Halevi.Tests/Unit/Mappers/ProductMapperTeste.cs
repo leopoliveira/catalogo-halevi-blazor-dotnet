@@ -1,4 +1,4 @@
-namespace Halevi.Tests.Tests.Unit.Mappers
+namespace Halevi.Tests.Unit.Mappers
 {
     public class ProductMapperTeste
     {

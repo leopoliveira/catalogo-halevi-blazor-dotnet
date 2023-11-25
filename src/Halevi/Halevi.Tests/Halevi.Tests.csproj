@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Tests.Unit\Validations\" />
+    <Folder Include="Unit\Validations\" />
   </ItemGroup>
 
   <ItemGroup>

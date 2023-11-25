@@ -1,7 +1,7 @@
 ﻿using Halevi.Core.Domain.Entities;
 using System;
 
-namespace Halevi.Tests.Tests.Unit.Helpers
+namespace Halevi.Tests.Helpers
 {
     internal static class EntityFactory
     {

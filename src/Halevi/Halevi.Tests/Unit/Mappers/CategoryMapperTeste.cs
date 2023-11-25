@@ -3,9 +3,9 @@
 using Halevi.Core.Application.DTOs.Category;
 using Halevi.Core.Application.Mappers;
 using Halevi.Core.Domain.Entities;
-using Halevi.Tests.Tests.Unit.Helpers;
+using Halevi.Tests.Helpers;
 
-namespace Halevi.Tests.Tests.Unit.Mappers
+namespace Halevi.Tests.Unit.Mappers
 {
     public class CategoryMapperTeste
     {

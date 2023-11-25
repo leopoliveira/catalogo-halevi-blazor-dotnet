@@ -2,9 +2,9 @@
 using Halevi.Core.Application.DTOs.Product;
 using Halevi.Core.Application.DTOs.ProductVariation;
 using Halevi.Core.Domain.Entities;
-using Halevi.Tests.Tests.Unit.Mappers;
+using Halevi.Tests.Unit.Mappers;
 
-namespace Halevi.Tests.Tests.Unit.Helpers
+namespace Halevi.Tests.Helpers
 {
     internal static class DtoFactory
     {
