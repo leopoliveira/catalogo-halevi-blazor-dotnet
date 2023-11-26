@@ -1,11 +1,4 @@
-﻿using FluentAssertions;
-
-using Halevi.Core.Application.DTOs.ProductVariation;
-using Halevi.Core.Application.Mappers;
-using Halevi.Core.Domain.Entities;
-using Halevi.Tests.Helpers;
-
-namespace Halevi.Tests.Unit.Mappers
+﻿namespace Halevi.Tests.Unit.Mappers
 {
     public class ProductVariationVariationMapperTest
     {

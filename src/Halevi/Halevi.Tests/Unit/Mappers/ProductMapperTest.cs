@@ -1,10 +1,3 @@
-using FluentAssertions;
-
-using Halevi.Core.Application.DTOs.Product;
-using Halevi.Core.Application.Mappers;
-using Halevi.Core.Domain.Entities;
-using Halevi.Tests.Helpers;
-
 namespace Halevi.Tests.Unit.Mappers
 {
     public class ProductMapperTest
