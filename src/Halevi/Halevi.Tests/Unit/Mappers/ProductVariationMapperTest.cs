@@ -1,6 +1,6 @@
 ﻿namespace Halevi.Tests.Unit.Mappers
 {
-    public class ProductVariationMapperTeste
+    public class ProductVariationMapperTest
     {
     }
 }

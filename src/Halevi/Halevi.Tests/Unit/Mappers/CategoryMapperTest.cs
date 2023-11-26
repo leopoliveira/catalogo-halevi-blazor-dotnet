@@ -7,7 +7,7 @@ using Halevi.Tests.Helpers;
 
 namespace Halevi.Tests.Unit.Mappers
 {
-    public class CategoryMapperTeste
+    public class CategoryMapperTest
     {
         [Fact]
         // Method_Scenario_Result
@@ -71,5 +71,8 @@ namespace Halevi.Tests.Unit.Mappers
                 .Should()
                 .Throw<ArgumentNullException>();
         }
+
+        [Fact]
+        public void To
     }
 }

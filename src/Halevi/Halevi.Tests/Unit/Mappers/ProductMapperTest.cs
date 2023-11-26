@@ -1,6 +1,6 @@
 namespace Halevi.Tests.Unit.Mappers
 {
-    public class ProductMapperTeste
+    public class ProductMapperTest
     {
         [Fact]
         // Method_Scenario_Result
