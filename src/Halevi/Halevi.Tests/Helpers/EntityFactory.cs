@@ -29,7 +29,8 @@ namespace Halevi.Tests.Helpers
                 Id = ConstantsFactory._productId,
                 Code = 1,
                 CreatedAt = ConstantsFactory._dateTime,
-                Active = true
+                Active = true,
+                Category = MakeCategory()
             };
         }
 
@@ -43,7 +44,8 @@ namespace Halevi.Tests.Helpers
                 Id = ConstantsFactory._variationId,
                 Code = 1,
                 CreatedAt = ConstantsFactory._dateTime,
-                Active = true
+                Active = true,
+                Product = MakeProduct()
             };
         }
     }
