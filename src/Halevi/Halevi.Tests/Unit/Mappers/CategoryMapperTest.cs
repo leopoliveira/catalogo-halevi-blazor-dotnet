@@ -73,6 +73,71 @@ namespace Halevi.Tests.Unit.Mappers
         }
 
         [Fact]
-        public void To
+        public void ToReadDto_EntityToReadDto_CategoryReadDto()
+        {
+            // Arrange
+            Category entity = EntityFactory.MakeCategory();
+
+            // Act
+            CategoryReadDto dto = entity.ToReadDto();
+
+            // Assert
+            dto
+                .Should()
+                .BeEquivalentTo(entity, config =>
+                    config
+                    .Excluding(entity => entity.Products)
+                    .Excluding(entity => entity.CreatedAt));
+        }
+
+        [Fact]
+        public void ToReadDto_NullEntity_ThrowArgumentNullException()
+        {
+            // Arrange
+            Category entity = null;
+
+            // Act
+            CategoryReadDto dto = new();
+
+            // Assert
+            dto
+                .Invoking(_ => entity.ToReadDto())
+                .Should()
+                .Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void ToUpdateDto_EntityToUpdateDto_CategoryUpdateDto()
+        {
+            // Arrange
+            Category entity = EntityFactory.MakeCategory();
+
+            // Act
+            CategoryUpdateDto dto = entity.ToUpdateDto();
+
+            // Assert
+            dto
+                .Should()
+                .BeEquivalentTo(entity, config =>
+                    config
+                    .Excluding(entity => entity.Products)
+                    .Excluding(entity => entity.CreatedAt));
+        }
+
+        [Fact]
+        public void ToUpdateDto_NullEntity_ThrowArgumentNullException()
+        {
+            // Arrange
+            Category entity = null;
+
+            // Act
+            CategoryUpdateDto dto = new();
+
+            // Assert
+            dto
+                .Invoking(_ => entity.ToUpdateDto())
+                .Should()
+                .Throw<ArgumentNullException>();
+        }
     }
 }
