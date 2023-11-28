@@ -30,7 +30,7 @@ namespace Halevi.API.Controllers.v1
         // api/v1/Category
         [HttpGet("getAll")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<CategoryReadDto>>> Get()
         {
@@ -48,8 +48,8 @@ namespace Halevi.API.Controllers.v1
         /// <returns>The Category or NotFound.</returns>
         [HttpGet("getById/{id}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<CategoryReadDto>> GetById(string id)
         {
@@ -72,8 +72,8 @@ namespace Halevi.API.Controllers.v1
         /// <returns>The Category or NotFound.</returns>
         [HttpGet("getByCode/{code:int}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<CategoryReadDto>> GetByCode(int code)
         {

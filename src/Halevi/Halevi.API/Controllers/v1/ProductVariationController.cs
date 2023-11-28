@@ -29,8 +29,8 @@ namespace Halevi.API.Controllers.v1
         /// <returns>The ProductVariation or NotFound.</returns>
         [HttpGet("getById/{id}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ProductVariationReadDto>> GetById(string id)
         {
@@ -53,8 +53,8 @@ namespace Halevi.API.Controllers.v1
         /// <returns>The ProductVariation or NotFound.</returns>
         [HttpGet("getByCode/{code:int}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ProductVariationReadDto>> GetByCode(int code)
         {
@@ -77,8 +77,8 @@ namespace Halevi.API.Controllers.v1
         /// <returns>The list of ProductVariations or NotFound.</returns>
         [HttpGet("productId/{id}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ProductVariationReadDto>> GetByProductId(string productId)
         {
@@ -101,8 +101,8 @@ namespace Halevi.API.Controllers.v1
         /// <returns>The list of ProductVariations or NotFound.</returns>
         [HttpGet("productCode/{code:int}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ProductVariationReadDto>> GetByProductCode(int productCode)
         {

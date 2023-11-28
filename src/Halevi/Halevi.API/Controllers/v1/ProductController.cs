@@ -29,8 +29,8 @@ namespace Halevi.API.Controllers.v1
         /// <returns>The Product or NotFound.</returns>
         [HttpGet("getById/{id}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ProductReadDto>> GetById(string id)
         {
@@ -53,8 +53,8 @@ namespace Halevi.API.Controllers.v1
         /// <returns>The Product or NotFound.</returns>
         [HttpGet("getByCode/{code:int}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ProductReadDto>> GetByCode(int code)
         {
