@@ -5,6 +5,8 @@ namespace Halevi.Tests.Helpers
 {
     internal static class EntityFactory
     {
+        #region Category
+
         internal static Category MakeCategory()
         {
             return new Category
@@ -24,6 +26,10 @@ namespace Halevi.Tests.Helpers
                 MakeCategory()
             };
         }
+
+        #endregion
+
+        #region Product
 
         internal static Product MakeProduct()
         {
@@ -50,6 +56,10 @@ namespace Halevi.Tests.Helpers
             };
         }
 
+        #endregion
+
+        #region Variation
+
         internal static ProductVariation MakeVariation()
         {
             return new ProductVariation
@@ -72,5 +82,7 @@ namespace Halevi.Tests.Helpers
                 MakeVariation()
             };
         }
+
+        #endregion
     }
 }
