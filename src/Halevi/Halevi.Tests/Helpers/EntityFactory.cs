@@ -17,6 +17,14 @@ namespace Halevi.Tests.Helpers
             };
         }
 
+        internal static List<Category> MakeListOfCategory()
+        {
+            return new List<Category>
+            {
+                MakeCategory()
+            };
+        }
+
         internal static Product MakeProduct()
         {
             return new Product
@@ -34,6 +42,14 @@ namespace Halevi.Tests.Helpers
             };
         }
 
+        internal static List<Product> MakeListOfProduct()
+        {
+            return new List<Product>
+            {
+                MakeProduct()
+            };
+        }
+
         internal static ProductVariation MakeVariation()
         {
             return new ProductVariation
@@ -46,6 +62,14 @@ namespace Halevi.Tests.Helpers
                 CreatedAt = ConstantsFactory._dateTime,
                 Active = true,
                 Product = MakeProduct()
+            };
+        }
+
+        internal static List<ProductVariation> MakeListOfVariations()
+        {
+            return new List<ProductVariation>
+            {
+                MakeVariation()
             };
         }
     }
