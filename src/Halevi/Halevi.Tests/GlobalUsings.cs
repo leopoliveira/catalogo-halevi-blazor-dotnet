@@ -8,3 +8,5 @@ global using Halevi.Core.Application.DTOs.ProductVariation;
 global using Halevi.Core.Application.Mappers;
 global using Halevi.Core.Domain.Entities;
 global using Halevi.Tests.Helpers;
+
+global using NSubstitute;
