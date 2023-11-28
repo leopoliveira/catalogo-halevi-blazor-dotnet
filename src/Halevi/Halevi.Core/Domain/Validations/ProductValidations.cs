@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 
+using Halevi.Core.Application.Helpers;
 using Halevi.Core.Domain.Entities;
 using Halevi.Core.Domain.Validations.Base;
 
@@ -14,11 +15,11 @@ namespace Halevi.Core.Domain.Validations
                 .WithMessage("Product {PropertyName} should not be null or empty.");
 
             RuleFor(product => product.Name)
-                .MaximumLength(MAX_SHORT_STRING_LENGTH)
+                .MaximumLength(ValidationConsts.MAX_SHORT_STRING_LENGTH)
                 .WithMessage("Product {PropertyName} has to have a maximum of {MaxLength} characters.");
 
             RuleFor(product => product.Description)
-                .MaximumLength(MAX_LONG_TEXT_LENGTH)
+                .MaximumLength(ValidationConsts.MAX_LONG_TEXT_LENGTH)
                 .WithMessage("Product {PropertyName} has to have a maximum of {MaxLength} characters.");
 
             RuleFor(product => product.Price)
