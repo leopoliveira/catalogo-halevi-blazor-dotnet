@@ -21,6 +21,14 @@ namespace Halevi.Tests.Helpers
             };
         }
 
+        internal static List<CategoryReadDto> MakeListaOfCategoryReadDto()
+        {
+            return new List<CategoryReadDto>
+            {
+                MakeCategoryReadDto()
+            };
+        }
+
         internal static CategoryCreateDto MakeCategoryCreateDto()
         {
             return new CategoryCreateDto
@@ -59,6 +67,14 @@ namespace Halevi.Tests.Helpers
                 InStock = true,
                 Code = 1,
                 Active = true
+            };
+        }
+
+        internal static List<ProductReadDto> MakeListaOfProductReadDto()
+        {
+            return new List<ProductReadDto>
+            {
+                MakeProductReadDto()
             };
         }
 
@@ -106,6 +122,14 @@ namespace Halevi.Tests.Helpers
                 Image = [],
                 Code = 1,
                 Active = true
+            };
+        }
+
+        internal static List<ProductVariationReadDto> MakeListaOfVariationReadDto()
+        {
+            return new List<ProductVariationReadDto>
+            {
+                MakeVariationReadDto()
             };
         }
 
