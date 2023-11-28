@@ -5,7 +5,12 @@ namespace Halevi.Tests.Unit.Validations
 {
     public class ProductVariationVariationValidationTest
     {
-        private readonly ProductVariationValidations _validationRules = new();
+        private readonly ProductVariationValidations _validationRules;
+
+        public ProductVariationVariationValidationTest()
+        {
+            _validationRules = new ProductVariationValidations();
+        }
 
         [Fact]
         // Method_Scenario_Result

@@ -5,7 +5,12 @@ namespace Halevi.Tests.Unit.Validations
 {
     public class CategoryValidationTest
     {
-        private readonly CategoryValidations _validationRules = new();
+        private readonly CategoryValidations _validationRules;
+
+        public CategoryValidationTest()
+        {
+            _validationRules = new CategoryValidations();
+        }
 
         [Fact]
         // Method_Scenario_Result
