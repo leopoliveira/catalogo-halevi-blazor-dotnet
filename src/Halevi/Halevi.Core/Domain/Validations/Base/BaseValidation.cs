@@ -7,9 +7,6 @@ namespace Halevi.Core.Domain.Validations.Base
     public class BaseValidation<TEntity> : AbstractValidator<TEntity>
         where TEntity : BaseEntitiy
     {
-        public const int MAX_SHORT_STRING_LENGTH = 255;
-        public const int MAX_LONG_TEXT_LENGTH = 600;
-
         public BaseValidation()
         {
             RuleFor(entity => entity.CreatedAt)
