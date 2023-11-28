@@ -21,7 +21,7 @@ namespace Halevi.Tests.Helpers
             };
         }
 
-        internal static List<CategoryReadDto> MakeListaOfCategoryReadDto()
+        internal static List<CategoryReadDto> MakeListOfCategoryReadDto()
         {
             return new List<CategoryReadDto>
             {
@@ -70,7 +70,7 @@ namespace Halevi.Tests.Helpers
             };
         }
 
-        internal static List<ProductReadDto> MakeListaOfProductReadDto()
+        internal static List<ProductReadDto> MakeListOfProductReadDto()
         {
             return new List<ProductReadDto>
             {
@@ -125,7 +125,7 @@ namespace Halevi.Tests.Helpers
             };
         }
 
-        internal static List<ProductVariationReadDto> MakeListaOfVariationReadDto()
+        internal static List<ProductVariationReadDto> MakeListOfVariationReadDto()
         {
             return new List<ProductVariationReadDto>
             {
