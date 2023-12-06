@@ -7,8 +7,8 @@ export default function Page() {
   return (
     <>
       <Header />
-      <div className="flex flex-col mt-2">
-        <div className="flex flex-row flex-grow">
+      <div className="flex flex-col mt-4">
+        <div className="flex flex-col">
           <Navbar />
           <Main />
         </div>
