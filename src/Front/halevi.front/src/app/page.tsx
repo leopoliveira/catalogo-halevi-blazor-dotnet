@@ -1,23 +1,19 @@
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
+import Navbar from "@/components/layout/navbar";
+import Main from "@/components/layout/main";
+
 export default function Page() {
   return (
     <>
-      <div className="main">
-        <div id="nav-bar">
-          <div id="logo"></div>
-          <div id="go-to-cart"></div>
-          <div id="categories"></div>
+      <Header />
+      <div className="flex flex-col mt-2">
+        <div className="flex flex-row flex-grow">
+          <Navbar />
+          <Main />
         </div>
-
-        <div id="main-content">
-          <div id="header">
-            <div id="search-bar"></div>
-            <div id="cart-icon"></div>
-          </div>
-          <div id="product-cards"></div>
-        </div>
+        <Footer />
       </div>
-
-      <div id="footer"></div>
     </>
   );
 }
