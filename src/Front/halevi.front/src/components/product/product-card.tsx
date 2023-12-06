@@ -1,15 +1,15 @@
 export default function ProductCard() {
   return (
     <>
-      <div className="flex flex-col bg-white shadow-lg rounded-lg p-6 m-4 overflow-hidden w-1/2">
+      <div className="flex flex-col bg-white shadow-lg rounded-lg p-6 m-4">
         <div
-          className="w-1/2 h-48 bg-cover bg-center mb-4 mx-auto"
+          className="w-1/2 h-32 bg-cover bg-center mb-4 mx-auto"
           style={{
             backgroundImage: "url('https://via.placeholder.com/75')",
           }}></div>
         <div
           id="body"
-          className="flex flex-col justify-between flex-grow">
+          className="flex flex-col h-32 justify-between">
           <div className="font-bold text-xl mb-2">Product 1</div>
           <div className="text-gray-700 mb-2">Category</div>
           <div className="text-gray-900 font-bold text-lg mb-2">
